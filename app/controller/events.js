@@ -6,10 +6,8 @@ const {SuccessResponseMaker, ResponseCode, ResponseMaker} = require('./../util/r
 class EventsController extends Controller {
     async list() {
         let ctx = this.ctx;
-        let {user} = ctx.query;  // request get
-        // let {pageSize} = this.config.events;
+        let {user} = ctx.query;
         let eventsList = await ctx.service.events.list(ctx, user);
-        // let totalCount = await ctx.service.events.count(ctx, user);
 
         ctx.body = SuccessResponseMaker(eventsList, "请求成功");
     }

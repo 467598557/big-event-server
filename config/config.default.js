@@ -19,11 +19,22 @@ module.exports = appInfo => {
         pageSize: 10
     };
 
+    config.users = {
+        Type: {
+            User: 1,
+            Manager: 2,
+            Admin: 3
+        }
+    };
+
     config.mongoose = {
         client: {
             url: 'mongodb://127.0.0.1:27017/bigevent',
             options: {}
         }
+    };
+
+    config.redis = {
     };
 
     return config;
