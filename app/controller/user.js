@@ -14,7 +14,7 @@ class UserController extends Controller {
     async getUserInfo() {
         let ctx = this.ctx;
         let app = this.app;
-        let user = await app.sessionStore.get("user");
+        let user = ctx.session.user;
         console.log("get user info", user);
         ctx.body = SuccessResponseMaker(user, "请求成功");
     }
@@ -76,9 +76,10 @@ class UserController extends Controller {
             return;
         }
 
-        let app = this.app;
-        await app.sessionStore.set(user, user);
-        console.log("set user info", user);
+        // let app = this.app;
+        // await app.sessionStore.set(user, user);
+        ctx.session.user = user;
+        console.log("set user info", ctx.session.user);
         ctx.body = SuccessResponseMaker(user, "登录成功");
     }
 }

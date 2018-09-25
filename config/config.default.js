@@ -8,11 +8,11 @@ module.exports = appInfo => {
 
     config.middleware = [];
 
-    config.security = {
-        methodnoallow: {
-            enable: false
-        },
-        domainWhiteList: [ '*' ]
+    config.cors = {
+        enable: true,
+        package: 'egg-cors',
+        origin: 'http://localhost:8080',
+        credentials: true
     };
 
     config.events = {
