@@ -39,4 +39,5 @@ module.exports = app => {
     router.get('/user/list', controller.user.list);
     router.get('/user/update', controller.user.update);
     router.get('/user/getUserInfo', controller.user.getUserInfo);
+    router.get('/user/logout', controller.user.logout);
 };
