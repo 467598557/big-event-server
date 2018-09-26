@@ -6,12 +6,14 @@ module.exports = appInfo => {
     // use for cookie sign key, should change to your own and keep security
     config.keys = appInfo.name + '_1537487184903_3529';
 
-    config.middleware = [];
+    config.middleware = [
+        "loginfilter"
+    ];
 
     config.cors = {
         enable: true,
         package: 'egg-cors',
-        origin: 'http://localhost:8080',
+        origin: 'http://192.168.10.12:8080',
         credentials: true
     };
 

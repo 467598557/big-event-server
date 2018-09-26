@@ -52,6 +52,28 @@ class UserController extends Controller {
         ctx.body = SuccessResponseMaker(true, "操作成功");
     }
 
+    async updatePassword() {
+        let ctx = this.ctx;
+        let {oldPassword, newPassword, rePassword} = this.ctx.query;
+        if(!oldPassword || !newPassword || !rePassword || (newPassword != rePassword)) {
+            ctx.body = ResponseMaker(ResponseCode.Fail, null, "数据不完整");
+            return;
+        }
+
+        let user = ctx.session.user;
+        if(user.password != oldPassword) {
+            ctx.body = ResponseMaker(ResponseCode.Fail, null, "当前密码输入错误");
+            return;
+        }
+
+        await ctx.service.user.update(ctx, {
+            id: user.id,
+            password: newPassword
+        });
+
+        ctx.body = SuccessResponseMaker(true, "操作成功");
+    }
+
     async delete() {
         let ctx = this.ctx;
         let {id} = ctx.query;
