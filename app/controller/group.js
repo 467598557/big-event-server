@@ -40,7 +40,7 @@ class GroupController extends Controller {
         let ctx = this.ctx;
         let {user, id} = ctx.query;
         await ctx.service.group.delete(ctx, user, id);
-        await ctx.service.events.deleteAll(ctx, user, id);
+        await ctx.service.event.deleteAll(ctx, user, id);
 
         ctx.body = SuccessResponseMaker(true, "操作成功");
     }
