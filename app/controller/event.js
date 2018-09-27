@@ -7,9 +7,9 @@ class EventsController extends Controller {
     async list() {
         let ctx = this.ctx;
         let {user} = ctx.query;
-        let eventsList = await ctx.service.events.list(ctx, user);
+        let eventList = await ctx.service.event.list(ctx, user);
 
-        ctx.body = SuccessResponseMaker(eventsList, "请求成功");
+        ctx.body = SuccessResponseMaker(eventList, "请求成功");
     }
 
     async add() {
@@ -20,7 +20,7 @@ class EventsController extends Controller {
             return;
         }
 
-        let result = await ctx.service.events.add(ctx, {
+        let result = await ctx.service.event.add(ctx, {
             text,
             user,
             group,
@@ -35,7 +35,7 @@ class EventsController extends Controller {
     async delete() {
         let ctx = this.ctx;
         let {user, id} = ctx.query;
-        await ctx.service.events.delete(ctx, user, id);
+        await ctx.service.event.delete(ctx, user, id);
 
         ctx.body = SuccessResponseMaker(true, "操作成功");
     }
@@ -48,7 +48,7 @@ class EventsController extends Controller {
             return;
         }
 
-        await ctx.service.events.update(ctx, {
+        await ctx.service.event.update(ctx, {
             id,
             text,
             user,
