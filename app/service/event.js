@@ -8,6 +8,12 @@ class EventsService extends Service {
         return list;
     }
 
+    async listByGroup(ctx, group) {
+        const list = await ctx.model.Event.find({group});
+
+        return list;
+    }
+
     async count(ctx, user) {
         const count = await ctx.model.Event.count({user});
 

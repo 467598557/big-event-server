@@ -13,7 +13,7 @@ module.exports = appInfo => {
     config.cors = {
         enable: true,
         package: 'egg-cors',
-        origin: 'http://192.168.10.12:8080',
+        origin: 'http://localhost:8080',
         credentials: true
     };
 
@@ -29,9 +29,17 @@ module.exports = appInfo => {
         }
     };
 
+    config.groups = {
+        Security: {
+            Self: 1,
+            Common: 2
+        }
+    };
+
     config.mongoose = {
         client: {
-            url: 'mongodb://127.0.0.1:27017/bigevent',
+            // url: 'mongodb://root:root123456@127.0.0.1:27017/bigevent',
+            url: 'mongodb://dyl:dyl123@192.168.50.62:27017/dyldb',
             options: {}
         }
     };

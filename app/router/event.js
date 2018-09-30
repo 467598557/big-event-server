@@ -5,5 +5,6 @@ module.exports = app=> {
     router.get('/event/add', event.add);
     router.get('/event/delete', event.delete);
     router.get('/event/list', event.list);
+    router.get('/event/listByGroups', event.listByGroups);
     router.get('/event/update', event.update);
 }

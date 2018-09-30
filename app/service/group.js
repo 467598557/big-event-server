@@ -8,6 +8,12 @@ class GroupService extends Service {
         return list;
     }
 
+    async getById(ctx, id) {
+        const list = await ctx.model.Group.findOne({id: id});
+
+        return list;
+    }
+
     async count(ctx) {
         const count = await ctx.model.Group.count({});
 

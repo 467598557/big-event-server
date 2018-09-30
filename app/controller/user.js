@@ -7,9 +7,16 @@ module.exports = app=> {
     class UserController extends Controller {
         async list() {
             let ctx = this.ctx;
-            let eventsList = await ctx.service.user.list(ctx);
+            let userList = await ctx.service.user.list(ctx);
+            let user = ctx.session.user;
+            let filterUserList = [];
+            userList.forEach((_user)=> {
+                if(_user.type <= user.type) {
+                    filterUserList.push(_user);
+                }
+            });
 
-            ctx.body = SuccessResponseMaker(eventsList, "请求成功");
+            ctx.body = SuccessResponseMaker(filterUserList, "请求成功");
         }
 
         async getUserInfo() {

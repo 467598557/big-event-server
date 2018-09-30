@@ -12,9 +12,15 @@ class GroupController extends Controller {
             return;
         }
 
-        const result = await ctx.service.group.list(ctx, user);
+        let loginUser = ctx.session.user;
+        let groupList = await ctx.service.group.list(ctx, user);
+        if(user != loginUser.id) {
+            groupList = groupList.filter((group)=> {
+                return group.security == ctx.app.config.groups.Security.Common;
+            });
+        }
 
-        ctx.body = SuccessResponseMaker(result, "操作成功");
+        ctx.body = SuccessResponseMaker(groupList, "操作成功");
     }
 
     async add() {

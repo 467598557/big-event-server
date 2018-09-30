@@ -12,6 +12,31 @@ class EventsController extends Controller {
         ctx.body = SuccessResponseMaker(eventList, "请求成功");
     }
 
+    async listByGroups() {
+        let ctx = this.ctx;
+        let {groups} = ctx.query;
+
+        groups = JSON.parse(groups);
+        let eventList = [];
+        let securityCommon = ctx.app.config.groups.Security.Common;
+        await new Promise((resolve)=> {
+            let lastIndex = groups.length - 1;
+            groups.forEach(async (groupId, index)=> {
+                let groupResult = await ctx.service.group.getById(ctx, groupId);
+                if(groupResult && groupResult.security == securityCommon) {
+                    let eventResult = await ctx.service.event.listByGroup(ctx, groupResult.id);
+                    eventList = eventList.concat(eventResult);
+                }
+
+                if(index == lastIndex) {
+                    resolve(eventList);
+                }
+            });
+        });
+
+        ctx.body = SuccessResponseMaker(eventList, "请求成功");
+    }
+
     async add() {
         let ctx = this.ctx;
         let {text, user, group} = this.ctx.query;
