@@ -67,7 +67,7 @@ class EventsController extends Controller {
 
     async update() {
         let ctx = this.ctx;
-        let {text, user, id, status, type, priority} = this.ctx.query;
+        let {text, user, id, status, type, priority} = ctx.query;
         if(!text || !user || !id) {
             ctx.body = ResponseMaker(ResponseCode.Fail, null, "数据不完整");
             return;
@@ -80,6 +80,27 @@ class EventsController extends Controller {
             status,
             type,
             priority
+        });
+
+        ctx.body = SuccessResponseMaker(true, "操作成功");
+    }
+
+    async updateIndex() {
+        let ctx = this.ctx;
+        console.log(ctx);
+        let {data} = ctx.request.body;
+        if(!data || !data.length) {
+            ctx.body = ResponseMaker(ResponseCode.Fail, null, "数据不完整");
+            return;
+        }
+
+        let curUser = ctx.session.user;
+        data.forEach(async (item)=> {
+            await ctx.service.event.update(ctx, {
+                id: item.id,
+                user: curUser.id,
+                index: item.index
+            })
         });
 
         ctx.body = SuccessResponseMaker(true, "操作成功");

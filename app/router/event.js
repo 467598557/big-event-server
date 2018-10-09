@@ -7,4 +7,5 @@ module.exports = app=> {
     router.get('/event/list', event.list);
     router.get('/event/listByGroups', event.listByGroups);
     router.get('/event/update', event.update);
+    router.post('/event/updateIndex', event.updateIndex);
 }
