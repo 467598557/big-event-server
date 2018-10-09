@@ -6,4 +6,5 @@ module.exports = app=> {
     router.get('/event/delete', event.delete);
     router.get('/event/list', event.list);
     router.get('/event/update', event.update);
+    router.post('/event/updateIndex', event.updateIndex);
 }

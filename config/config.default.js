@@ -13,7 +13,7 @@ module.exports = appInfo => {
     config.cors = {
         enable: true,
         package: 'egg-cors',
-        origin: 'http://192.168.10.12:8080',
+        origin: 'http://localhost:8080',
         credentials: true
     };
 
@@ -33,6 +33,12 @@ module.exports = appInfo => {
         client: {
             url: 'mongodb://127.0.0.1:27017/bigevent',
             options: {}
+        }
+    };
+
+    config.security = {
+        csrf: {
+            enable: false
         }
     };
 

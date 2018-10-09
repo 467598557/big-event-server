@@ -11,6 +11,7 @@ module.exports = app=> {
         status: {type: Number}, // 1->未开始,2->进行中,3->已完成
         createTime: {type: Number},
         priority: {type: Number}, // 1->普通,2->低，3->中，4->高
+        index: {type: Number}
     });
 
     return mongoose.model('Event', EventSchema);
