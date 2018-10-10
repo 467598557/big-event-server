@@ -107,6 +107,35 @@ module.exports = app=> {
             ctx.session.user = null;
             ctx.body = SuccessResponseMaker(true, "登出成功");
         }
+
+        async init() {
+            let ctx = this.ctx;
+            let user = await ctx.service.user.find(ctx, {
+                name: "admin"
+            });
+
+            if(user) {
+                ctx.body = ResponseMaker(ResponseCode.Fail, null, "已经初始化过");
+                return;
+            }
+
+            const result = await ctx.service.user.add(ctx, {
+                name: "admin",
+                password: "123456",
+                type: 3
+            });
+
+            ctx.body = SuccessResponseMaker(result, "您可使用账号:admin,密码:123456进行登录。请尽快更改密码。");
+        }
+
+        async getInitStatus() {
+            let ctx = this.ctx;
+            let user = await ctx.service.user.find(ctx, {
+                name: "admin"
+            });
+
+            ctx.body = SuccessResponseMaker(!!user, user ? "已经初始化过" : "未初始化");
+        }
     }
 
     return UserController;
