@@ -87,7 +87,6 @@ class EventsController extends Controller {
 
     async updateIndex() {
         let ctx = this.ctx;
-        console.log(ctx);
         let {data} = ctx.request.body;
         if(!data || !data.length) {
             ctx.body = ResponseMaker(ResponseCode.Fail, null, "数据不完整");

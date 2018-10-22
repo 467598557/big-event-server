@@ -10,4 +10,6 @@ module.exports = app=> {
     router.get('/user/getUserInfo', user.getUserInfo);
     router.get('/user/logout', user.logout);
     router.get('/user/updatePassword', user.updatePassword);
+    router.post('/user/init', user.init);
+    router.get('/user/getInitStatus', user.getInitStatus);
 }
