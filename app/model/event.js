@@ -7,11 +7,12 @@ module.exports = app=> {
         text: {type: String},
         group: {type: String},
         user: {type: String},
-        type: {type: Number}, // 1->事件,2->任务
+        type: {type: Number}, // 1->事件,2->任务,3->markdown
         status: {type: Number}, // 1->未开始,2->进行中,3->已完成
         createTime: {type: Number},
         priority: {type: Number}, // 1->普通,2->低，3->中，4->高
-        index: {type: Number}
+        index: {type: Number},
+        markDown: {type: String}
     });
 
     return mongoose.model('Event', EventSchema);

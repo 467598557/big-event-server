@@ -1,7 +1,7 @@
 const Service = require("egg").Service;
 const uuidv1 = require('uuid/v1');
 
-class EventsService extends Service {
+class EventService extends Service {
     async list(ctx, user) {
         const list = await ctx.model.Event.find({user});
 
@@ -53,4 +53,4 @@ class EventsService extends Service {
     }
 }
 
-module.exports = EventsService;
+module.exports = EventService;

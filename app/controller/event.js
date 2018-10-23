@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 const {SuccessResponseMaker, ResponseCode, ResponseMaker} = require('./../util/response');
 
-class EventsController extends Controller {
+class EventController extends Controller {
     async list() {
         let ctx = this.ctx;
         let {user} = ctx.query;
@@ -106,4 +106,4 @@ class EventsController extends Controller {
     }
 }
 
-module.exports = EventsController;
+module.exports = EventController;
