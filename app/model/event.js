@@ -12,7 +12,7 @@ module.exports = app=> {
         createTime: {type: Number},
         priority: {type: Number}, // 1->普通,2->低，3->中，4->高
         index: {type: Number},
-        markDown: {type: String}
+        markdown: {type: String}
     });
 
     return mongoose.model('Event', EventSchema);

@@ -104,6 +104,24 @@ class EventController extends Controller {
 
         ctx.body = SuccessResponseMaker(true, "操作成功");
     }
+
+    async updateMarkdown() {
+        let ctx = this.ctx;
+        let {markdown, id} = ctx.request.body;
+        if(!markdown || !id) {
+            ctx.body = ResponseMaker(ResponseCode.Fail, null, "数据不完整");
+            return;
+        }
+
+        let curUser = ctx.session.user;
+        await ctx.service.event.update(ctx, {
+            id: id,
+            user: curUser.id,
+            markdown: markdown
+        })
+
+        ctx.body = SuccessResponseMaker(true, "操作成功");
+    }
 }
 
 module.exports = EventController;

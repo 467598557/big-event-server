@@ -8,4 +8,5 @@ module.exports = app=> {
     router.get('/event/listByGroups', event.listByGroups);
     router.get('/event/update', event.update);
     router.post('/event/updateIndex', event.updateIndex);
+    router.post('/event/updateMarkdown', event.updateMarkdown);
 }

@@ -38,8 +38,8 @@ module.exports = appInfo => {
 
     config.mongoose = {
         client: {
-            // url: 'mongodb://root:root123456@127.0.0.1:27017/bigevent',
-            url: 'mongodb://dyl:dyl123@192.168.50.62:27017/dyldb',
+            url: 'mongodb://127.0.0.1:27017/bigevent',
+            // url: 'mongodb://dyl:dyl123@192.168.50.62:27017/dyldb',
             options: {}
         }
     };
